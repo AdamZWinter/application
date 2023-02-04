@@ -1,0 +1,87 @@
+<!--personalInfo.html-->
+<!--Author: Adam Winter-->
+<!--Date: 2023-2-3-->
+<!--Descriptions:  Body of the application start page.  -->
+
+<include href="views/header.html"></include>  <!--This is strictly F3 syntax-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="d-none d-sm-none d-md-block col-1">
+            <!--            <p>Left Margin</p>-->
+        </div>
+
+        <div class="col-md-10 col-sm-12">
+            <div class="container">
+
+                <!--    -----------------------------------            MAIN     ---------------------------------------------------  -->
+
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                        <br>
+                        <h4>Software Development Internship</h4>
+                        <p>Seattle Washington. Paid. 12 weeks</p>
+                        <br>
+                        <h1 class="text-start">Experience</h1>
+                        <hr>
+                    </div>
+
+                </div><!-- end row -->
+
+
+
+                <!--    <form id = "order1" action="#" method="post">  ------  Using AJAX instead-->
+                <form id="experience">
+                    <div class="row">
+
+                        <div class="col-md-7 col-sm-12">
+                            <label>Biography:               </label>
+                            <textarea rows="10" class="form-control" id="biography" name="biography"></textarea>
+                        </div>
+
+                        <div class="col-md-5 col-sm-12">
+                            <label>Github Link:</label><br>
+                            <input type="text" class= "form-control" id="github" name="github">
+                            <label>Years Experience:</label><br>
+                            <label><input type="radio" name="years" value="0-2">0-2</label>
+                            <label><input type="radio" name="years" value="2-4">2-4</label>
+                            <label><input type="radio" name="years" value="4+">4+</label><br>
+                            <label>Willing To Relocate:</label><br>
+                            <label><input type="radio" name="relocate" value="yes">yes</label>
+                            <label><input type="radio" name="relocate" value="no">no</label>
+                            <label><input type="radio" name="realocate" value="maybe">maybe</label>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <div class="d-grid gap-2">
+                                <button type="button" class="rounded nextButton btn-outline-primary" onclick="experienceSubmit()">Next</button>
+                            </div>
+                            <br>
+                            <span id="submitFeedback"></span>
+
+                        </div>
+
+                    </div><!-- end row -->
+                </form>
+
+                <!--    -----------------------------------       END MAIN     ---------------------------------------------------  -->
+
+            </div><!-- end inner container-->
+        </div> <!-- between margins column-->
+
+        <div class="d-none d-sm-none d-md-block col-1">
+            <!--            <p>Right Margin</p>-->
+        </div>
+
+    </div><!-- end row -->
+</div><!-- end container -->
+
+<!--My scripts-->
+<script src="JS/experience.js"></script>
+
+
+<include href="views/footer.html"></include>  <!--This is strictly F3 syntax-->

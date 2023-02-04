@@ -1,15 +1,16 @@
 
-const personalInfoSubmit = function (){
+const experienceSubmit = function (){
 
-    let fname = document.querySelector("#fname").value;
-    let lname = document.querySelector("#lname").value;
-    let email = document.querySelector("#email").value;
-    let phone = document.querySelector("#phone").value;
-    let state = document.querySelector("#state")[document.querySelector("#state").selectedIndex].innerHTML;
+    let biography = document.querySelector("#biography").value;
+    let github = document.querySelector("#github").value;
+    let years = document.forms.experience.years.value;
+    let relocate = document.forms.experience.relocate.value;
+    //let years = document.querySelector('input[name="years"]:checked').value;
+    //let relocate = document.querySelector('input[name="relocate"]:checked').value;
 
     //TODO:  do validation first
 
-    let assocArray = {fname: fname, lname: lname, email: email, phone: phone, state: state};
+    let assocArray = {biography: biography, github: github, years: years, relocate: relocate};
     let JSONpayload = JSON.stringify(assocArray);
 
     var fail = true;
@@ -21,8 +22,8 @@ const personalInfoSubmit = function (){
             if(responseObj.error  == true){
                 document.querySelector("#submitFeedback").innerHTML = responseObj.message;
             }else{
-                document.querySelector("#submitFeedback").innerHTML = "Your name is not Batman.";
-                document.location.href ="experience";
+                document.querySelector("#submitFeedback").innerHTML = responseObj.message;
+                document.location.href ="mailingLists";
             }
 
 
@@ -30,7 +31,7 @@ const personalInfoSubmit = function (){
             window.setTimeout(failed(fail), 4000);
         }
     };
-    xhttp.open("POST", "start", true);
+    xhttp.open("POST", "experience", true);
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhttp.send("JSONpayload="+JSONpayload);
 }
