@@ -29,8 +29,8 @@ html, body {
 #grad1 {
     /* Standard syntax (must be last) */
     background: radial-gradient(circle at top left, rgba(60,60,60,1), rgba(var(--myPurple), 1));
-    /*background-repeat: no-repeat;*/
-    /*background-attachment: fixed;*/
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 img {
