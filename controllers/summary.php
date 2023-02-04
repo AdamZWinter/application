@@ -28,5 +28,5 @@ foreach ($mailingListsArray as $category){
 }
 $mailingLists = ltrim($mailingLists, ', ');
 
-$_SESSION["mailingLists"] = $mailingLists;
+$_SESSION["mailingListsString"] = $mailingLists;
 
