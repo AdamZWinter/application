@@ -8,6 +8,7 @@
     --offWhite: 195, 210, 190, 1;
     --backGrey: 40, 40, 40;
     --linkBlue: 195, 210, 255, 1;
+    --footerBottom: 60, 55, 80, 1;
 }
 
 /* a is between zero and one. */
@@ -39,7 +40,7 @@ img {
     object-fit: cover;
 }
 
-h1, h2, h3, h4, h5, p, li, label, hr{
+h1, h2, h3, h4, h5, p, li, label, hr, span{
     color:white;
 }
 
@@ -72,7 +73,7 @@ a:hover {
 
 
 .footer-style{
-    background-image: radial-gradient(circle, rgba(var(--myPurple)), rgba(var(--offWhite)) );
+    background: linear-gradient(rgba(var(--myPurple)), rgba(var(--footerBottom)) );
     font-family:sans-serif;
     font-weight: 150;
     font-size: large;
@@ -84,6 +85,13 @@ a:hover {
 }
 
 .footerLinksBlack{
-    color:white;
+    color:black;
     white-space: nowrap;
+}
+
+
+/**************************************  Other *************************************************************/
+
+.noteBox{
+    background-color: #4f5050;
 }

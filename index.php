@@ -34,13 +34,21 @@ $f3->route('GET /home', function (){
 });
 
 //Define a route to start the application
-$f3->route('GET /start', function () use ($f3) {
-    require('misc/states.php');
-    //echo json_encode($states);
-    $f3->set('states',$states);
-    //Instantiate a view
-    $view = new Template();
-    echo $view->render("views/personalInfo.html");
+$f3->route('GET|POST /start', function () use ($f3) {
+    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
+        //Move data from POST array to SESSION array
+        $_SESSION['personalInfo'] = $_POST['JSONpayload'];
+        require('controllers/personalInfo.php');
+        //echo 'Received POST';
+        //var_dump($_POST['JSONpayload']);
+    }else{
+        require('constants/states.php');
+        //echo json_encode($states);
+        $f3->set('states',$states);
+        //Instantiate a view
+        $view = new Template();
+        echo $view->render("views/personalInfo.html");
+    }
 });
 
 //Define a route to start the application

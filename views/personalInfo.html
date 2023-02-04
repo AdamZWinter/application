@@ -46,9 +46,8 @@
                             <repeat group="{{ @states }}" key="{{ @key }}" value="{{ @state }}">
                                 <option value="{{ @key }}">{{ @state }}</option>
                             </repeat>
-<!--                            <option value="1">One</option>-->
-<!--                            <option value="2">Two</option>-->
-<!--                            <option value="3">Three</option>-->
+                            <!--  <option value="1">One</option>-->
+
                         </select>
 
                     </div>
@@ -58,13 +57,25 @@
                         <input type="text" class= "form-control" id="lname" name="lname">
                         <label>Phone:              </label>
                         <input type="text" class= "form-control" id="phone" name="phone">
-
+                        <br>
+                        <br>
+                        <br>
+                        <span id="submitFeedback"></span>
 
                     </div>
 
                     <div class="col-md-2 col-sm-12">
-                        <p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p><p>.</p>
-
+                        <br>
+                        <div class="noteBox rounded">
+                            <p>Note: All information entered is protected by our privacy policy.  Profile information can only be viewed by others with your permission.</p>
+                        </div>
+                        <br>
+                        <br>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="rounded nextButton btn-outline-primary" onclick="personalInfoSubmit()">Next</button>
+                        </div>
+                        <br>
+                        <br>
                     </div>
 
                 </div><!-- end row -->
@@ -81,6 +92,9 @@
 
     </div><!-- end row -->
 </div><!-- end container -->
+
+<!--My scripts-->
+<script src="JS/personalInfo.js"></script>
 
 
 <include href="views/footer.html"></include>  <!--This is strictly F3 syntax-->
