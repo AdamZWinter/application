@@ -1,0 +1,85 @@
+<!--summary.html-->
+<!--Author: Adam Winter-->
+<!--Date: 2023-2-3-->
+<!--Descriptions:  Displays summary of the application information entered on previous pages.  -->
+
+<include href="views/header.html"></include>  <!--This is strictly F3 syntax-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="d-none d-sm-none d-md-block col-1">
+            <!--            <p>Left Margin</p>-->
+        </div>
+
+        <div class="col-md-10 col-sm-12">
+            <div class="container">
+
+                <!--    -----------------------------------            MAIN     ---------------------------------------------------  -->
+
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                        <br>
+                        <h4>Software Development Internship</h4>
+                        <p>Seattle Washington. Paid. 12 weeks</p>
+                        <br>
+                        <h1 class="text-start">Summary</h1>
+                        <hr>
+                    </div>
+
+                </div><!-- end row -->
+
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                        <p>{{ @SESSION.lname }}, {{ @SESSION.fname }}</p>
+                        <p>Email: {{ @SESSION.email }}</p>
+                        <p>Phone: {{ @SESSION.phone }}</p>
+                        <p>State: {{ @SESSION.state }}</p>
+                        <p>Github: {{ @SESSION.github }}</p>
+                        <p>Experience: {{ @SESSION.years }} years</p>
+                        <p>Willing to Relocate: {{ @SESSION.relocate }}</p>
+                        <p>Mailing Lists: {{ @SESSION.mailingLists }}</p>
+
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <img class="img-fluid" src="images/somebody.jpg" alt="Cartoon silhouette representing a person head and shoulders.">
+                        <br>
+                        <br>
+                        <label>Biography:</label><br>
+                        <div class="noteBox rounded">
+                            <p>{{ @SESSION.biography }}</p>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <div class="d-grid gap-2">
+                            <button type="button" class="rounded nextButton btn-outline-primary" onclick="summarySubmit()">Submit My Application</button>
+                        </div>
+                        <br>
+                        <span id="submitFeedback"></span>
+
+                    </div>
+
+                </div><!-- end row -->
+
+                <!--    -----------------------------------       END MAIN     ---------------------------------------------------  -->
+
+            </div><!-- end inner container-->
+        </div> <!-- between margins column-->
+
+        <div class="d-none d-sm-none d-md-block col-1">
+            <!--            <p>Right Margin</p>-->
+        </div>
+
+    </div><!-- end row -->
+</div><!-- end container -->
+
+<!--My scripts-->
+<script src="JS/summary.js"></script>
+
+
+<include href="views/footer.html"></include>  <!--This is strictly F3 syntax-->

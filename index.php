@@ -44,7 +44,7 @@ $f3->route('GET|POST /start', function () use ($f3) {
     }else{
         require('constants/states.php');
         //echo json_encode($states);
-        $f3->set('states',$states);
+        $f3->set('states',$STATES);
         //Instantiate a view
         $view = new Template();
         echo $view->render("views/personalInfo.html");
@@ -81,6 +81,28 @@ $f3->route('GET|POST /mailingLists', function () use ($f3) {
         //Instantiate a view
         $view = new Template();
         echo $view->render("views/mailingLists.html");
+    }
+});
+
+//Define a route to the application summary
+$f3->route('GET|POST /summary', function () use ($f3) {
+    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
+        //Move data from POST array to SESSION array
+//        $_SESSION['mailingLists'] = $_POST['JSONpayload'];
+//        require('controllers/mailingLists.php');
+        //echo 'Received POST';
+        //var_dump($_POST['JSONpayload']);
+    }else{
+        require('controllers/summary.php');
+        $f3->sync('SESSION');
+        //echo var_dump($_SESSION);
+        //$f3->set('applicant',$_SESSION);
+        //$f3->set('jobs',$jobs);
+        //$f3->set('verticals',$verticals);
+        //echo var_dump($mailingListsObj);
+        //Instantiate a view
+        $view = new Template();
+        echo $view->render("views/summary.html");
     }
 });
 

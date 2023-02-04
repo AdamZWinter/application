@@ -16,14 +16,10 @@ const mailingListsSubmit = function (){
     };
 
     let jobsChecked = document.querySelectorAll('input[name=jobsArray]:checked');
-    for (var i = 0; i < jobsChecked.length; i++) {
-        mailingListsObj.jobsArray.push(jobsChecked[i].value);
-    }
+    mailingListsObj.jobsArray = Array.from(jobsChecked).map(x => x.id);
 
     let verticalsChecked = document.querySelectorAll('input[name=verticalsArray]:checked');
-    for (var i = 0; i < verticalsChecked.length; i++) {
-        mailingListsObj.verticalsArray.push(verticalsChecked[i].value);
-    }
+    mailingListsObj.verticalsArray = Array.from(verticalsChecked).map(x => x.id);
 
     let JSONpayload = JSON.stringify(mailingListsObj);
 
@@ -32,16 +28,14 @@ const mailingListsSubmit = function (){
     xhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
             var fail = false;
-            document.querySelector("#submitFeedback").innerHTML = this.responseText;
-            // let responseObj = JSON.parse(this.responseText);
-            // if(responseObj.error  == true){
-            //     document.querySelector("#submitFeedback").innerHTML = responseObj.message;
-            // }else{
-            //     document.querySelector("#submitFeedback").innerHTML = responseObj.message;
-            //     //document.location.href ="mailingLists";
-            // }
-
-
+            //document.querySelector("#submitFeedback").innerHTML = this.responseText;
+            let responseObj = JSON.parse(this.responseText);
+            if(responseObj.error  == true){
+                document.querySelector("#submitFeedback").innerHTML = responseObj.message;
+            }else{
+                document.querySelector("#submitFeedback").innerHTML = responseObj.message;
+                document.location.href ="summary";
+            }
         }else{
             window.setTimeout(failed(fail), 4000);
         }
