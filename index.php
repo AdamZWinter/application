@@ -26,6 +26,13 @@ $f3->route('GET /', function (){
     echo $view->render("views/home.html");
 });
 
+//Define a route to start the application
+$f3->route('GET /start', function (){
+    //Instantiate a view
+    $view = new Template();
+    echo $view->render("views/personalInfo.html");
+});
+
 //Run Fat Free
 $f3->run();
 
