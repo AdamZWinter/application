@@ -51,7 +51,7 @@ $f3->route('GET|POST /start', function () use ($f3) {
     }
 });
 
-//Define a route to start the application
+//Define a route to continue the application
 $f3->route('GET|POST /experience', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
         //Move data from POST array to SESSION array
@@ -63,6 +63,24 @@ $f3->route('GET|POST /experience', function () use ($f3) {
         //Instantiate a view
         $view = new Template();
         echo $view->render("views/experience.html");
+    }
+});
+
+//Define a route to finish the application
+$f3->route('GET|POST /mailingLists', function () use ($f3) {
+    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
+        //Move data from POST array to SESSION array
+        $_SESSION['mailingLists'] = $_POST['JSONpayload'];
+        require('controllers/mailingLists.php');
+        //echo 'Received POST';
+        //var_dump($_POST['JSONpayload']);
+    }else{
+        require('constants/mailingLists.php');
+        $f3->set('jobs',$JOBS);
+        $f3->set('verticals',$VERTICALS);
+        //Instantiate a view
+        $view = new Template();
+        echo $view->render("views/mailingLists.html");
     }
 });
 

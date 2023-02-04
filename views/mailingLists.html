@@ -1,7 +1,7 @@
-<!--personalInfo.html-->
+<!--mailingLists.html-->
 <!--Author: Adam Winter-->
 <!--Date: 2023-2-3-->
-<!--Descriptions:  Gathering applicant information about their work experience.  -->
+<!--Descriptions:  Asking the annoying question of whether people want to be added to the mailing lists.  -->
 
 <include href="views/header.html"></include>  <!--This is strictly F3 syntax-->
 
@@ -24,7 +24,7 @@
                         <h4>Software Development Internship</h4>
                         <p>Seattle Washington. Paid. 12 weeks</p>
                         <br>
-                        <h1 class="text-start">Experience</h1>
+                        <h1 class="text-start">Job Openings Mailing Lists</h1>
                         <hr>
                     </div>
 
@@ -36,29 +36,39 @@
                 <form id="experience">
                     <div class="row">
 
+                        <div class="col-md-10 col-sm-12">
+                            <h5>Software Development Jobs:</h5>
+<!--                            <input type="checkbox" class= "form-control" id="javascript" name="javascript"><label for="javascript">JavaScript</label>-->
+<!--                            <input type="checkbox" class= "form-control" id="PHP" name="PHP"><label for="PHP">JavaScript</label>-->
+                            <repeat group="{{ @jobs }}" value="{{ @job }}">
+                                <label for="{{@job}}"><input type="checkbox" id="{{@job}}" name="jobsArray">  &nbsp;{{@job}}&nbsp;&nbsp;&nbsp;&nbsp;   </label>
+                            </repeat>
+                            <br>
+                            <br>
+                            <h5>Industry Verticals:</h5>
+                            <repeat group="{{ @verticals }}" value="{{ @vertical }}">
+                                <label for="{{ @vertical }}"><input type="checkbox" id="{{ @vertical }}" name="verticalsArray"> &nbsp; {{ @vertical }} &nbsp;&nbsp;&nbsp;&nbsp;    </label>
+                            </repeat>
+                        </div>
+
+                        <div class="col-md-2 d-none d-md-block">
+                            <br>
+                        </div>
+
+                    </div><!-- end row -->
+
+                    <div class="row">
+
                         <div class="col-md-7 col-sm-12">
-                            <label>Biography:               </label>
-                            <textarea rows="10" class="form-control" id="biography" name="biography"></textarea>
+                            <br>
                         </div>
 
                         <div class="col-md-5 col-sm-12">
-                            <label>Github Link:</label><br>
-                            <input type="text" class= "form-control" id="github" name="github">
-                            <label>Years Experience:</label><br>
-                            <label><input type="radio" name="years" value="0-2">0-2</label>
-                            <label><input type="radio" name="years" value="2-4">2-4</label>
-                            <label><input type="radio" name="years" value="4+">4+</label><br>
-                            <label>Willing To Relocate:</label><br>
-                            <label><input type="radio" name="relocate" value="yes">yes</label>
-                            <label><input type="radio" name="relocate" value="no">no</label>
-                            <label><input type="radio" name="realocate" value="maybe">maybe</label>
-                            <br>
-                            <br>
                             <br>
                             <br>
                             <br>
                             <div class="d-grid gap-2">
-                                <button type="button" class="rounded nextButton btn-outline-primary" onclick="experienceSubmit()">Next</button>
+                                <button type="button" class="rounded nextButton btn-outline-primary" onclick="mailingListsSubmit()">Next</button>
                             </div>
                             <br>
                             <span id="submitFeedback"></span>
@@ -81,7 +91,7 @@
 </div><!-- end container -->
 
 <!--My scripts-->
-<script src="JS/experience.js"></script>
+<script src="JS/mailingLists.js"></script>
 
 
 <include href="views/footer.html"></include>  <!--This is strictly F3 syntax-->
