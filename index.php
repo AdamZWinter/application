@@ -26,8 +26,18 @@ $f3->route('GET /', function (){
     echo $view->render("views/home.html");
 });
 
+//Define a default route
+$f3->route('GET /home', function (){
+    //Instantiate a view
+    $view = new Template();
+    echo $view->render("views/home.html");
+});
+
 //Define a route to start the application
-$f3->route('GET /start', function (){
+$f3->route('GET /start', function () use ($f3) {
+    require('misc/states.php');
+    //echo json_encode($states);
+    $f3->set('states',$states);
     //Instantiate a view
     $view = new Template();
     echo $view->render("views/personalInfo.html");
