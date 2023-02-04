@@ -23,12 +23,14 @@ html, body {
 }
 
 /*html {*/
-/*    !*min-height: 100%;*!   DONT DO THIS, IT RUINS THE STICKY FOOTER, USE CLASS h-100*/
+/*    !*min-height: 100%;*!   Ths conflicts with bootstrap class h-100*/
 /*}*/
 
 #grad1 {
     /* Standard syntax (must be last) */
-    background-image: radial-gradient(circle at top left, rgba(60,60,60,1), rgba(var(--myPurple), 1));
+    background: radial-gradient(circle at top left, rgba(60,60,60,1), rgba(var(--myPurple), 1));
+    /*background-repeat: no-repeat;*/
+    /*background-attachment: fixed;*/
 }
 
 img {
