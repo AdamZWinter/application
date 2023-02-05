@@ -23,10 +23,15 @@ $verticalsArray = $mailingListsObj->verticalsArray;
 $mailingListsArray = array_merge($jobsArray, $verticalsArray);
 
 $mailingLists = "";
-foreach ($mailingListsArray as $category){
-    $mailingLists = $mailingLists.", ".$category;
+if(!empty($mailingListsArray)){
+    foreach ($mailingListsArray as $category){
+        $mailingLists = $mailingLists.", ".$category;
+    }
+    $mailingLists = ltrim($mailingLists, ', ');
+}else{
+    $mailingLists = "none";
 }
-$mailingLists = ltrim($mailingLists, ', ');
+
 
 $_SESSION["mailingListsString"] = $mailingLists;
 
