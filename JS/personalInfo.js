@@ -25,6 +25,7 @@ const personalInfoSubmit = function (){
                 document.location.href ="experience";
             }
         }else{
+            document.querySelector("#submitFeedback").innerHTML = this.responseText;
             window.setTimeout(failed(fail), 4000);
         }
     };

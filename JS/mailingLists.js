@@ -37,6 +37,7 @@ const mailingListsSubmit = function (){
                 document.location.href ="summary";
             }
         }else{
+            document.querySelector("#submitFeedback").innerHTML = this.responseText;
             window.setTimeout(failed(fail), 4000);
         }
     };

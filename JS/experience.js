@@ -4,6 +4,7 @@ const experienceSubmit = function (){
     let biography = document.querySelector("#biography").value;
     let github = document.querySelector("#github").value;
     let years = document.forms.experience.years.value;
+    //document.querySelector("#testValues").innerHTML = years;
     let relocate = document.forms.experience.relocate.value;
     //let years = document.querySelector('input[name="years"]:checked').value;
     //let relocate = document.querySelector('input[name="relocate"]:checked').value;
@@ -28,6 +29,7 @@ const experienceSubmit = function (){
 
 
         }else{
+            document.querySelector("#submitFeedback").innerHTML = this.responseText;
             window.setTimeout(failed(fail), 4000);
         }
     };
