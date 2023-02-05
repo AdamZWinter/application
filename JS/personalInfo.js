@@ -19,24 +19,49 @@ const personalInfoSubmit = function (){
             var fail = false;
             let responseObj = JSON.parse(this.responseText);
             if(responseObj.error  == true){
-                document.querySelector("#submitFeedback").innerHTML = responseObj.message;
+                document.querySelector("#submitFeedback").innerHTML = '<span class="text-danger">'+responseObj.message+'</span>';
             }else{
-                document.querySelector("#submitFeedback").innerHTML = "Your name is not Batman.";
+                document.querySelector("#submitFeedback").innerHTML = responseObj.message;
                 document.location.href ="experience";
             }
-
-
         }else{
             window.setTimeout(failed(fail), 4000);
         }
     };
-    xhttp.open("POST", "start", true);
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("JSONpayload="+JSONpayload);
+    if(ValidateEmail(email) && ValidatePhone(phone)){
+        xhttp.open("POST", "start", true);
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("JSONpayload="+JSONpayload);
+    }
+
 }
 
 function failed(fail){
     if(fail){
         document.querySelector("#submitFeedback").innerHTML = "Failed to connect to server.";
+    }
+}
+
+function ValidateEmail(emailAddr) {
+    var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+[\.][a-zA-Z0-9-]{2,}$/;
+    //var emailAddr = document.getElementById('email').value;
+    console.log(emailAddr);
+    if (emailAddr.match(validRegex)) {
+        return true;
+    } else {
+        document.querySelector("#submitFeedback").innerHTML = '<span class="text-danger">Invalid email address.</span>';
+        return false;
+    }
+}
+
+function ValidatePhone(phoneNum) {
+    var validRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+    //var phoneNum = document.getElementById('phone').value;
+    console.log(phoneNum);
+    if (phoneNum.match(validRegex)) {
+        return true;
+    } else {
+        document.querySelector("#submitFeedback").innerHTML = '<span class="text-danger">Invalid phone number.</span>';
+        return false;
     }
 }

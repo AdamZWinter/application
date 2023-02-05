@@ -36,8 +36,6 @@ $f3->route('GET /home', function (){
 //Define a route to start the application
 $f3->route('GET|POST /start', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        //Move data from POST array to SESSION array
-        $_SESSION['personalInfo'] = $_POST['JSONpayload'];
         require('models/personalInfo.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
@@ -69,8 +67,6 @@ $f3->route('GET|POST /experience', function () use ($f3) {
 //Define a route to finish the application
 $f3->route('GET|POST /mailingLists', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        //Move data from POST array to SESSION array
-        $_SESSION['mailingLists'] = $_POST['JSONpayload'];
         require('models/mailingLists.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
