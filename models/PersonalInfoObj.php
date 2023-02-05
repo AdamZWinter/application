@@ -7,6 +7,12 @@
 //        $this->obj = $obj;
 //    }
          public function validName(){
+             if(empty($this->decodedObj->fname) || empty($this->decodedObj->lname)){
+                 $this->obj->error = true;
+                 $this->obj->message = "First and Last names are required";
+                 echo json_encode($this->obj);
+                 exit;
+             }
              if(!ctype_alpha($this->decodedObj->fname) || !ctype_alpha($this->decodedObj->lname)){
                  $this->obj->error = true;
                  $this->obj->message = "Names can only contain letters";
@@ -16,6 +22,12 @@
          }//end function validName
 
          public function validEmail(){
+             if(empty($this->decodedObj->email)){
+                 $this->obj->error = true;
+                 $this->obj->message = "Email address is required.";
+                 echo json_encode($this->obj);
+                 exit;
+             }
              if(!filter_var($this->decodedObj->email, FILTER_VALIDATE_EMAIL)){
                  $this->obj->error = true;
                  $this->obj->message = "Invalid email address.";
@@ -25,6 +37,12 @@
          }
 
          public function validPhone(){
+             if(empty($this->decodedObj->phone)){
+                 $this->obj->error = true;
+                 $this->obj->message = "Phone number is required.";
+                 echo json_encode($this->obj);
+                 exit;
+             }
              $this->decodedObj->phone = filter_var($this->decodedObj->phone, FILTER_SANITIZE_STRING);
              if(!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $this->decodedObj->phone)){
                  $this->obj->error = true;
