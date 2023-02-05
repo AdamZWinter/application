@@ -38,7 +38,7 @@ $f3->route('GET|POST /start', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
         //Move data from POST array to SESSION array
         $_SESSION['personalInfo'] = $_POST['JSONpayload'];
-        require('controllers/personalInfo.php');
+        require('models/personalInfo.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
@@ -56,7 +56,7 @@ $f3->route('GET|POST /experience', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
         //Move data from POST array to SESSION array
         $_SESSION['experience'] = $_POST['JSONpayload'];
-        require('controllers/experience.php');
+        require('models/experience.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
@@ -71,7 +71,7 @@ $f3->route('GET|POST /mailingLists', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
         //Move data from POST array to SESSION array
         $_SESSION['mailingLists'] = $_POST['JSONpayload'];
-        require('controllers/mailingLists.php');
+        require('models/mailingLists.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
@@ -93,13 +93,8 @@ $f3->route('GET|POST /summary', function () use ($f3) {
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
-        require('controllers/summary.php');
+        require('models/summary.php');
         $f3->sync('SESSION');
-        //echo var_dump($_SESSION);
-        //$f3->set('applicant',$_SESSION);
-        //$f3->set('jobs',$jobs);
-        //$f3->set('verticals',$verticals);
-        //echo var_dump($mailingListsObj);
         //Instantiate a view
         $view = new Template();
         echo $view->render("views/summary.html");
