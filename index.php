@@ -36,7 +36,7 @@ $f3->route('GET /home', function (){
 //Define a route to start the application
 $f3->route('GET|POST /start', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        require('models/personalInfo.php');
+        require('controllers/personalInfo.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
@@ -52,7 +52,7 @@ $f3->route('GET|POST /start', function () use ($f3) {
 //Define a route to continue the application
 $f3->route('GET|POST /experience', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        require('models/experience.php');
+        require('controllers/experience.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
@@ -65,7 +65,7 @@ $f3->route('GET|POST /experience', function () use ($f3) {
 //Define a route to finish the application
 $f3->route('GET|POST /mailingLists', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        require('models/mailingLists.php');
+        require('controllers/mailingLists.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
@@ -87,7 +87,7 @@ $f3->route('GET|POST /summary', function () use ($f3) {
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);
     }else{
-        require('models/summary.php');
+        require('controllers/summary.php');
         $f3->sync('SESSION');
         //Instantiate a view
         $view = new Template();

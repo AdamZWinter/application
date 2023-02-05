@@ -3,7 +3,7 @@ class ExperienceObj extends PostedObj {
     public function validGithub(){
         if(!filter_var($this->decodedObj->github, FILTER_VALIDATE_URL) || !preg_match("/github.com/", $this->decodedObj->github)){
             $this->obj->error = true;
-            $this->obj->message = "Invalid github URL.";
+            $this->obj->message = "Github URI must be prefixed with protocol.  Please copy URI directly from address bar.";
             echo json_encode($this->obj);
             exit;
         }
