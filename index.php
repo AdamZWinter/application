@@ -52,8 +52,6 @@ $f3->route('GET|POST /start', function () use ($f3) {
 //Define a route to continue the application
 $f3->route('GET|POST /experience', function () use ($f3) {
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        //Move data from POST array to SESSION array
-        $_SESSION['experience'] = $_POST['JSONpayload'];
         require('models/experience.php');
         //echo 'Received POST';
         //var_dump($_POST['JSONpayload']);

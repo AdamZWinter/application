@@ -20,7 +20,7 @@ const experienceSubmit = function (){
             var fail = false;
             let responseObj = JSON.parse(this.responseText);
             if(responseObj.error  == true){
-                document.querySelector("#submitFeedback").innerHTML = responseObj.message;
+                document.querySelector("#submitFeedback").innerHTML = '<span class="text-danger">'+responseObj.message+'</span>';
             }else{
                 document.querySelector("#submitFeedback").innerHTML = responseObj.message;
                 document.location.href ="mailingLists";
