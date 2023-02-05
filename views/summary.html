@@ -39,7 +39,7 @@
                         <p>Phone: {{ @SESSION.phone }}</p>
                         <p>State: {{ @SESSION.state }}</p>
                         <p>Github: {{ @SESSION.github }}</p>
-                        <p>Experience: {{ @SESSION.years }} years</p>
+                        <p>Experience: {{ @SESSION.years }}<check if="{{ @SESSION.years=='4' }}"><true>+</true></check> years</p>
                         <p>Willing to Relocate: {{ @SESSION.relocate }}</p>
                         <p>Mailing Lists: {{ @SESSION.mailingListsString }}</p>
 
