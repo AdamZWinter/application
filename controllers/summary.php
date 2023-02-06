@@ -1,6 +1,6 @@
 <?php
 
-$obj = new stdClass();
+$obj = new \stdClass();  // the \ backslash in front of stdClass tells it to use the PHP global namespace
 $obj->error = false;
 
 $personalInfoObj = json_decode($_SESSION['personalInfo']);
