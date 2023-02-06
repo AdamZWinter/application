@@ -1,5 +1,5 @@
 <?php
-
+namespace JobApplication;
 class MailingListsObj extends PostedObj
 {
     protected $jobsArray;

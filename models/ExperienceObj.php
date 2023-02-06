@@ -1,4 +1,5 @@
 <?php
+namespace JobApplication;
 class ExperienceObj extends PostedObj {
     public function validGithub(){
         if(empty($this->decodedObj->github)){

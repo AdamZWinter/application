@@ -1,4 +1,5 @@
 <?php
+namespace JobApplication;
 class PostedObj {
     protected $decodedObj;  //The object sent from the client
     protected $obj;         //The object that will be json encoded and returned to the client.

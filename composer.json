@@ -8,5 +8,10 @@
   ],
   "require": {
     "bcosca/fatfree-core": "dev-master"
+  },
+  "autoload": {
+    "psr-4": {
+      "JobApplication\\": ["models/","controllers/"]
+    }
   }
 }
