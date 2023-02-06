@@ -1,7 +1,7 @@
 <?php
 namespace JobApplication;
-//use JobApplication\ExperienceObj;  //You still have to use the use statement to specify the classes to import
-                                    //psr-4 autoloading does not just find the class for you unless you specify the namespace
+//use JobApplication\ExperienceObj;  //You can use the use statement to specify the classes to import
+                                    //psr-4 autoloading does not auto find the class for you unless you specify the namespace
                                     //classmap would, however, find the class for you, but there are no namespaces available
 
 //require_once('models/PostedObj.php');
