@@ -79,7 +79,7 @@ $f3->route('GET|POST /mailingLists', function () use ($f3) {
 });
 
 //Define a route to the application summary
-$f3->route('GET|POST /summary', function () use ($f3) {
+$f3->route('GET|POST /summary', function ($f3) {  //instead of use you can just pass the object in as parameter
     if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
         //Move data from POST array to SESSION array
 //        $_SESSION['mailingLists'] = $_POST['JSONpayload'];
@@ -100,6 +100,25 @@ $f3->route('GET /footer', function (){
     //Instantiate a view
     $view = new Template();
     echo $view->render("views/stickyFooterTest.html");
+});
+
+//Define a route to start the application
+$f3->route('GET /info', function ($f3){
+    $f3->set('password', sha1('Password01'));
+    $f3->set('favFood', 'popsicle');
+    $f3->set('favColor', 'purple');
+    $f3->set('mathNumber', 67);
+    $f3->set('radius', 10);
+
+    //Define an array of fruits
+    $fruits = array("apple", "banana", "orange");
+    $f3->set('fruits', $fruits);
+
+
+
+    //Instantiate a view
+    $view = new Template();
+    echo $view->render("views/info.html");
 });
 
 //Run Fat Free
