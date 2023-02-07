@@ -115,8 +115,11 @@ $f3->route('GET /info', function ($f3){
     $f3->set('fruits', $fruits);
 
     //Define an associative array
-    $cupcakes = array("chocolat"=>"Chocolate Ganache", "strawberry"=>"Strawberry Shortcake", "maple"=>"Maple Walnut");
+    $cupcakes = array("chocolate"=>"Chocolate Ganache", "strawberry"=>"Strawberry Shortcake", "maple"=>"Maple Walnut");
     $f3->set('cupcakes', $cupcakes);
+
+    $age = 29;
+    $f3->set('age', $age);
 
 
 

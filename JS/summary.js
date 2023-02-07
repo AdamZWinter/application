@@ -2,7 +2,7 @@
 const summarySubmit = function (){
 
     //TODO:  do validation first
-    document.querySelector("#submitFeedback").innerHTML = "This button doesn't do anything, yet.";
+    return document.querySelector("#submitFeedback").innerHTML = "This button doesn't do anything, yet.";
 
 //     var fail = true;
 //     var xhttp = new XMLHttpRequest();
@@ -34,3 +34,6 @@ const summarySubmit = function (){
 //     }
 
  }
+
+const submitButton = document.querySelector("#submitSummary");
+submitButton.addEventListener("click", ()=>{summarySubmit()}, false);

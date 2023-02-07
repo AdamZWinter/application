@@ -43,3 +43,6 @@ function failed(fail){
         document.querySelector("#submitFeedback").innerHTML = "Failed to connect to server.";
     }
 }
+
+const submitButton = document.querySelector("#submitExperience");
+submitButton.addEventListener("click", ()=>{experienceSubmit()}, false);

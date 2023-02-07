@@ -66,3 +66,6 @@ function ValidatePhone(phoneNum) {
         return false;
     }
 }
+
+const submitButton = document.querySelector("#submitPersonalInfo");
+submitButton.addEventListener("click", ()=>{personalInfoSubmit()}, false);

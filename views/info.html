@@ -47,6 +47,23 @@
                             <label><input type="radio" name="cupcakesChosen[]" value="{{ @key }}">{{ @cupcake }}</label>
                         </repeat>
 
+                        <br>
+                        <br>
+                        <check if="{{ @age > 30}}">
+                            <true><p>You are mature.</p></true>
+                            <false><p>You are a spring chicken.</p></false>
+                        </check>
+
+                        <br>
+                        <br>
+                        <check if="{{ @cupcakes['chocolate'] == 'Chocolate Ganache' }}">
+                            <true><p>True</p></true>
+
+                        </check>
+
+
+                        </check>
+
 
 
 
