@@ -114,6 +114,10 @@ $f3->route('GET /info', function ($f3){
     $fruits = array("apple", "banana", "orange");
     $f3->set('fruits', $fruits);
 
+    //Define an associative array
+    $cupcakes = array("chocolat"=>"Chocolate Ganache", "strawberry"=>"Strawberry Shortcake", "maple"=>"Maple Walnut");
+    $f3->set('cupcakes', $cupcakes);
+
 
 
     //Instantiate a view
