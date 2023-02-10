@@ -45,9 +45,9 @@ class PersonalInfoObj extends PostedObj {
              exit;
          }
          $this->decodedObj->phone = filter_var($this->decodedObj->phone, FILTER_SANITIZE_STRING);
-         if(!preg_match("/^[0-9]{3}-[0-9]{3}-[0-9]{4}$/", $this->decodedObj->phone)){
+         if(!preg_match("/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/", $this->decodedObj->phone)){
              $this->obj->error = true;
-             $this->obj->message = "Phone number must be in ###-###-#### format.";
+             $this->obj->message = "Invalid phone number format.";
              echo json_encode($this->obj);
              exit;
          }
