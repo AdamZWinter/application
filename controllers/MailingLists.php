@@ -1,19 +1,20 @@
 <?php
 use JobApplication\MailingListsObj;
+use JobApplication\DataLayer;
 
 class MailingLists
 {
     static function display($f3){
         require('constants/mailingLists.php');
-        $f3->set('jobs',$JOBS);
-        $f3->set('verticals',$VERTICALS);
+        $f3->set('jobs', DataLayer::getJobsList());
+        $f3->set('verticals',DataLayer::getVerticalsList());
         //Instantiate a view
         $view = new Template();
         echo $view->render("views/mailingLists.html");
     }
 
     static function respond(){
-        $obj = new stdClass();  // the \ backslash in front of stdClass tells it to use the PHP global namespace
+        $obj = new stdClass();
         $obj->error = false;
 
         $mailingListsObject = new MailingListsObj($_POST['JSONpayload'], $obj);

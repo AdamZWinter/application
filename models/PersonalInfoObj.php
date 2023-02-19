@@ -1,12 +1,6 @@
 <?php
 namespace JobApplication;
 class PersonalInfoObj extends PostedObj {
-    //    protected $decodedObj;  //The object sent from the client
-    //    protected $obj;         //The object that will be json encoded and returned to the client.
-    //    function __construct($JSONpayload, $obj){
-    //        $this->decodedObj = json_decode($JSONpayload);
-    //        $this->obj = $obj;
-    //    }
      public function validName(){
          if(empty($this->decodedObj->fname) || empty($this->decodedObj->lname)){
              $this->obj->error = true;
@@ -55,7 +49,7 @@ class PersonalInfoObj extends PostedObj {
 
      public function validState(){
          require_once('constants/states.php');
-         if(!in_array($this->decodedObj->state, $STATES)){
+         if(!in_array($this->decodedObj->state, DataLayer::getStates())){
              $this->obj->error = true;
              $this->obj->message = 'Possible Spoofing: Submission includes a state value that is not acceptable';
              echo json_encode($this->obj);

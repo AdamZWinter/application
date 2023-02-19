@@ -1,12 +1,13 @@
 <?php
 use JobApplication\PersonalInfoObj;
+use JobApplication\DataLayer;
 
 class PersonalInfo
 {
     static function display($f3){
         require('constants/states.php');
         //echo json_encode($states);
-        $f3->set('states',$STATES);
+        $f3->set('states', DataLayer::getStates());
         //Instantiate a view
         $view = new Template();
         echo $view->render("views/personalInfo.html");
