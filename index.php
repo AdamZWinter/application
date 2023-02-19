@@ -5,6 +5,7 @@
 //Date: 2023-1-25
 //Descriptions:  This is my controller for the MVC framework.  Routes will be found here.
 
+use JobApplication\HomePage;
 
 //Turn on error reporting
 ini_set('display_errors', 1);
@@ -20,11 +21,19 @@ require_once('vendor/autoload.php');
 $f3 = Base::instance();
 
 //Define a default route
-$f3->route('GET /', function (){
-    //Instantiate a view
-    $view = new Template();
-    echo $view->render("views/home.html");
-});
+$f3->route('GET /', HomePage::display());
+
+////Define a default route
+//$f3->route('GET /', function (){
+//    HomePage::display();
+//});
+
+////Define a default route
+//$f3->route('GET /', function (){
+//    //Instantiate a view
+//    $view = new Template();
+//    echo $view->render("views/home.html");
+//});
 
 //Define a default route
 $f3->route('GET /home', function (){
