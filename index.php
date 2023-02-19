@@ -22,102 +22,46 @@ $f3 = Base::instance();
 $f3->set('AUTOLOAD','controllers/');
 
 //Define a default route
-$f3->route('GET /', function (){HomePage::display();});
-
-////Define a default route
-//$f3->route('GET /', function (){
-//    //Instantiate a view
-//    $view = new Template();
-//    echo $view->render("views/home.html");
-//});
+$f3->route('GET /', function (){ HomePage::display(); });
 
 //Define a default route
-$f3->route('GET /home', function (){HomePage::display();});
+$f3->route('GET /home', function (){ HomePage::display(); });
 
 //Define a route to start the application
-$f3->route('GET /start', function ($f3){PersonalInfo::display($f3);});
+$f3->route('GET /start', function ($f3){ PersonalInfo::display($f3); });
 
-//Define a route to start the application
-//$f3->route('GET|POST /start', function () use ($f3) {
-//    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-//        require('controllers/personalInfoOld.php');
-//        //echo 'Received POST';
-//        //var_dump($_POST['JSONpayload']);
-//    }else{
-//
-//    }
-//});
+//Define a route to handle the application start page submission
+$f3->route('POST /start', function () { PersonalInfo::respond(); });
 
-////Define a route to start the application
-//$f3->route('GET|POST /start', function () use ($f3) {
-//    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-//        require('controllers/personalInfoOld.php');
-//        //echo 'Received POST';
-//        //var_dump($_POST['JSONpayload']);
-//    }else{
-//        require('constants/states.php');
-//        //echo json_encode($states);
-//        $f3->set('states',$STATES);
-//        //Instantiate a view
-//        $view = new Template();
-//        echo $view->render("views/personalInfo.html");
-//    }
-//});
+//Defines route to display the experience page
+$f3->route('GET /experience', function () { Experience::display(); });
 
-//Define a route to continue the application
-$f3->route('GET|POST /experience', function () use ($f3) {
-    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        require('controllers/experience.php');
-        //echo 'Received POST';
-        //var_dump($_POST['JSONpayload']);
-    }else{
-        //Instantiate a view
-        $view = new Template();
-        echo $view->render("views/experience.html");
-    }
-});
+//Defines route to handle the experience page submission
+$f3->route('POST /experience', function () { Experience::respond(); });
 
-//Define a route to finish the application
-$f3->route('GET|POST /mailingLists', function () use ($f3) {
-    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        require('controllers/mailingLists.php');
-        //echo 'Received POST';
-        //var_dump($_POST['JSONpayload']);
-    }else{
-        require('constants/mailingLists.php');
-        $f3->set('jobs',$JOBS);
-        $f3->set('verticals',$VERTICALS);
-        //Instantiate a view
-        $view = new Template();
-        echo $view->render("views/mailingLists.html");
-    }
-});
+//Defines route to display the mailing lists page
+$f3->route('GET /mailingLists', function ($f3) { MailingLists::display($f3); });
 
-//Define a route to the application summary
-$f3->route('GET|POST /summary', function ($f3) {  //instead of use you can just pass the object in as parameter
-    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        //Move data from POST array to SESSION array
-//        $_SESSION['mailingLists'] = $_POST['JSONpayload'];
-//        require('controllers/mailingLists.php');
-        //echo 'Received POST';
-        //var_dump($_POST['JSONpayload']);
-    }else{
-        require('controllers/summary.php');
-        $f3->sync('SESSION');
-        //Instantiate a view
-        $view = new Template();
-        echo $view->render("views/summary.html");
-    }
-});
+//Defines route to handle the mailing lists page submission
+$f3->route('POST /mailingLists', function () { MailingLists::respond(); });
 
-//Define a route to start the application
+//Defines route to display the summary page
+$f3->route('GET /summary', function ($f3) { Summary::display($f3); });
+
+//Defines route to handle the summary page submission
+$f3->route('POST /summary', function () { Summary::respond(); });
+
+
+
+
+//Route for testing footer
 $f3->route('GET /footer', function (){
     //Instantiate a view
     $view = new Template();
     echo $view->render("views/stickyFooterTest.html");
 });
 
-//Define a route to start the application
+//Route for work done in class
 $f3->route('GET /info', function ($f3){
     $f3->set('password', sha1('Password01'));
     $f3->set('favFood', 'popsicle');
@@ -135,8 +79,6 @@ $f3->route('GET /info', function ($f3){
 
     $age = 29;
     $f3->set('age', $age);
-
-
 
     //Instantiate a view
     $view = new Template();
