@@ -1,6 +1,6 @@
 <?php
 
-namespace JobApplication;
+//namespace JobApplication;
 
 class HomePage
 {

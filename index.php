@@ -5,8 +5,6 @@
 //Date: 2023-1-25
 //Descriptions:  This is my controller for the MVC framework.  Routes will be found here.
 
-use JobApplication\HomePage;
-
 //Turn on error reporting
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
@@ -20,13 +18,11 @@ require_once('vendor/autoload.php');
 //Instantiate the F3 Base class
 $f3 = Base::instance();
 
-//Define a default route
-$f3->route('GET /', HomePage::display());
+//https://fatfreeframework.com/3.5/routing-engine#TheF3Autoloader
+$f3->set('AUTOLOAD','controllers/');
 
-////Define a default route
-//$f3->route('GET /', function (){
-//    HomePage::display();
-//});
+//Define a default route
+$f3->route('GET /', function (){HomePage::display();});
 
 ////Define a default route
 //$f3->route('GET /', function (){
@@ -36,27 +32,37 @@ $f3->route('GET /', HomePage::display());
 //});
 
 //Define a default route
-$f3->route('GET /home', function (){
-    //Instantiate a view
-    $view = new Template();
-    echo $view->render("views/home.html");
-});
+$f3->route('GET /home', function (){HomePage::display();});
 
 //Define a route to start the application
-$f3->route('GET|POST /start', function () use ($f3) {
-    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
-        require('controllers/personalInfo.php');
-        //echo 'Received POST';
-        //var_dump($_POST['JSONpayload']);
-    }else{
-        require('constants/states.php');
-        //echo json_encode($states);
-        $f3->set('states',$STATES);
-        //Instantiate a view
-        $view = new Template();
-        echo $view->render("views/personalInfo.html");
-    }
-});
+$f3->route('GET /start', function ($f3){PersonalInfo::display($f3);});
+
+//Define a route to start the application
+//$f3->route('GET|POST /start', function () use ($f3) {
+//    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
+//        require('controllers/personalInfoOld.php');
+//        //echo 'Received POST';
+//        //var_dump($_POST['JSONpayload']);
+//    }else{
+//
+//    }
+//});
+
+////Define a route to start the application
+//$f3->route('GET|POST /start', function () use ($f3) {
+//    if ($_SERVER['REQUEST_METHOD'] ==  'POST'){
+//        require('controllers/personalInfoOld.php');
+//        //echo 'Received POST';
+//        //var_dump($_POST['JSONpayload']);
+//    }else{
+//        require('constants/states.php');
+//        //echo json_encode($states);
+//        $f3->set('states',$STATES);
+//        //Instantiate a view
+//        $view = new Template();
+//        echo $view->render("views/personalInfo.html");
+//    }
+//});
 
 //Define a route to continue the application
 $f3->route('GET|POST /experience', function () use ($f3) {
