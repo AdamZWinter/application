@@ -9,6 +9,8 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+//If this comes after f3 autoload then it overwrites the f3 call to session_start() and vice-versa:
+// So, having it before is useless and session manipulation will have to be done through f3
 //Start a session
 session_start();
 

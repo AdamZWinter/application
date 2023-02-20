@@ -12,6 +12,10 @@ class PostedObj {
         return json_encode($this->decodedObj);
     }
 
+    function getDecodedObject(){
+        return $this->decodedObj;
+    }
+
     function getObj(){
         return $this->obj;
     }

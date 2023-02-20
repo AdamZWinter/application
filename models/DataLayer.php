@@ -19,7 +19,7 @@ class DataLayer
 
         for($i = 0; $i < count($noKeys); $i++){
             //echo $states[$i].PHP_EOL;
-            $STATES[$i+1] = $noKeys[$i];
+            $states[$i+1] = $noKeys[$i];
         }
         return $states;
     }

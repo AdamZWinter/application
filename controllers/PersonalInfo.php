@@ -23,11 +23,28 @@ class PersonalInfo
         $personalInfoObject->validEmail();
         $personalInfoObject->validPhone();
         $personalInfoObject->validState();
+        $personalInfoObject->validMailing();
         $personalInfoObject->notBatman();
 
 
         //Move data from POST array to SESSION array after validation
         $_SESSION['personalInfo'] = $personalInfoObject->getJSONencoded();
+
+        $personalInfoObj = $personalInfoObject->getDecodedObject();
+        //$personalInfoObj = json_decode($_SESSION['personalInfo']);
+        $_SESSION["fname"] = $personalInfoObj->fname;
+        $_SESSION["lname"] = $personalInfoObj->lname;
+        $_SESSION["email"] = $personalInfoObj->email;
+        $_SESSION["phone"] = $personalInfoObj->phone;
+        $_SESSION["state"] = $personalInfoObj->state;
+        $_SESSION["mailing"] = $personalInfoObj->mailing;
+
+        setcookie('fname', $_SESSION["fname"]);
+        setcookie('lname', $_SESSION["lname"]);
+        setcookie('email', $_SESSION["email"]);
+        setcookie('phone', $_SESSION["phone"]);
+        setcookie('state', $_SESSION["state"]);
+        setcookie('mailing', $_SESSION["mailing"]);
 
         //respond to the client
         echo json_encode($personalInfoObject->getObj());

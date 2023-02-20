@@ -51,7 +51,7 @@
                         <br>
                         <label>Biography:</label><br>
                         <div class="noteBox rounded">
-                            <p>{{ @SESSION.biography }}</p>
+                            <p>{{ html_entity_decode(@SESSION.biography) }}</p>
                         </div>
                         <br>
                         <br>

@@ -51,10 +51,23 @@ class PersonalInfoObj extends PostedObj {
          require_once('constants/states.php');
          if(!in_array($this->decodedObj->state, DataLayer::getStates())){
              $this->obj->error = true;
-             $this->obj->message = 'Possible Spoofing: Submission includes a state value that is not acceptable';
+             $this->obj->message = 'Possible Spoofing: Submission includes a value that is not acceptable';
              echo json_encode($this->obj);
              exit;
          }
+     }
+
+     public function validMailing(){
+         if($this->decodedObj->mailing != 1 && $this->decodedObj->mailing != 0){
+             $this->obj->error = true;
+             $this->obj->message = 'Possible Spoofing: Submission includes a value that is not acceptable';
+             echo json_encode($this->obj);
+             exit;
+         }
+//         $this->obj->error = true;
+//         $this->obj->message = $this->decodedObj->mailing;
+//         echo json_encode($this->obj);
+//         exit;
      }
 
      public function notBatman(){
