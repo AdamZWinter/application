@@ -7,8 +7,7 @@
     }
   ],
   "require": {
-    "bcosca/fatfree-core": "dev-master",
-    "squizlabs/php_codesniffer" : "*"
+    "bcosca/fatfree-core": "dev-master"
   },
   "require-dev": {
     "squizlabs/php_codesniffer": "3.*"
