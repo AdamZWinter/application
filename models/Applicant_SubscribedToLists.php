@@ -7,10 +7,10 @@ class Applicant_SubscribedToLists extends Applicant
     private $_selectionsJob = null;
     private $_selectionsVerticals = null;
 
-//    public function __construct($fname = null, $lname = null, $email = null, $phone = null, $state = null)
-//    {
-//        parent::__construct($fname, $lname, $email, $phone, $state);
-//    }
+    //    public function __construct($fname = null, $lname = null, $email = null, $phone = null, $state = null)
+    //    {
+    //        parent::__construct($fname, $lname, $email, $phone, $state);
+    //    }
 
     /**
      * @return mixed

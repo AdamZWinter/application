@@ -2,9 +2,13 @@
 
 namespace JobApplication;
 
+/**
+ *  Model for an applicant of a job / opportunity / internship
+ *
+ * @author Adam Winter
+ */
 class Applicant
 {
-
     private $_fname;
     private $_lname;
     private $_email;
@@ -16,11 +20,11 @@ class Applicant
     private $_bio = null;
 
     /**
-     * @param $_fname  Applicant first name
-     * @param $_lname  Applicant last name
-     * @param $_email  Applicant email
-     * @param $_phone  Applicant phone
-     * @param $_state  Applicant state
+     * @param $_fname String first name, defaults to null
+     * @param $_lname String last name, defaults to null
+     * @param $_email String email, defaults to null
+     * @param $_phone String phone, defaults to null
+     * @param $_state String state, defaults to null
      */
     public function __construct($fname = null, $lname = null, $email = null, $phone = null, $state = null)
     {
@@ -32,7 +36,7 @@ class Applicant
     }
 
     /**
-     * @return mixed
+     * @return String first name
      */
     public function getFname()
     {
@@ -40,7 +44,7 @@ class Applicant
     }
 
     /**
-     * @param mixed $fname
+     * @param String $fname
      */
     public function setFname($fname)
     {
@@ -48,7 +52,7 @@ class Applicant
     }
 
     /**
-     * @return mixed
+     * @return String Last name
      */
     public function getLname()
     {
@@ -56,7 +60,7 @@ class Applicant
     }
 
     /**
-     * @param mixed $lname
+     * @param String $lname Last name
      */
     public function setLname($lname)
     {
@@ -64,7 +68,7 @@ class Applicant
     }
 
     /**
-     * @return mixed
+     * @return String email address
      */
     public function getEmail()
     {
@@ -72,7 +76,7 @@ class Applicant
     }
 
     /**
-     * @param mixed $email
+     * @param String $email Email address
      */
     public function setEmail($email)
     {
@@ -80,7 +84,7 @@ class Applicant
     }
 
     /**
-     * @return mixed
+     * @return String Phone number
      */
     public function getPhone()
     {
@@ -88,7 +92,7 @@ class Applicant
     }
 
     /**
-     * @param mixed $phone
+     * @param String $phone Phone number
      */
     public function setPhone($phone)
     {
@@ -96,7 +100,7 @@ class Applicant
     }
 
     /**
-     * @return mixed
+     * @return String State or providence of the USA
      */
     public function getState()
     {
@@ -104,7 +108,7 @@ class Applicant
     }
 
     /**
-     * @param mixed $state
+     * @param String $state
      */
     public function setState($state)
     {
@@ -112,7 +116,7 @@ class Applicant
     }
 
     /**
-     * @return mixed
+     * @return String github.com URL to applicant github account
      */
     public function getGithub()
     {
@@ -120,7 +124,7 @@ class Applicant
     }
 
     /**
-     * @param mixed $github
+     * @param String $github github.com URL to applicant github account
      */
     public function setGithub($github)
     {
@@ -175,11 +179,13 @@ class Applicant
         $this->_bio = $bio;
     }
 
-    public function __destruct()
-    {
-        // TODO: Implement __destruct() method.
-    }
-
+    /**
+     * 
+     * For all functions that call this method
+     * or anything that calls the serialize method
+     *
+     * @return array
+     */
     public function __serialize()
     {
         $assoc = [];
@@ -195,6 +201,13 @@ class Applicant
         return $assoc;
     }
 
+    /**
+     * @param $data Output from serialize() function
+     *              or anything that calls the
+     *              unserialize method
+     *
+     * @return void
+     */
     public function __unserialize($data)
     {
         $this->_fname = $data['fname'];

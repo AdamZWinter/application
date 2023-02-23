@@ -23,7 +23,7 @@ $verticalsArray = $mailingListsObj->verticalsArray;
 $mailingListsArray = array_merge($jobsArray, $verticalsArray);
 
 $mailingLists = "";
-if(!empty($mailingListsArray)){
+if(!empty($mailingListsArray)) {
     foreach ($mailingListsArray as $category){
         $mailingLists = $mailingLists.", ".$category;
     }

@@ -9,13 +9,16 @@
 ini_set('display_errors', 1);
 error_reporting(E_ALL);
 
+
+//Require autoload file
+//Do this before session start because session has an object that will not work
+// if the class has not been loaded already
+require_once('vendor/autoload.php');
+
 //If this comes after f3 autoload then it overwrites the f3 call to session_start() and vice-versa:
 // So, having it before is useless and session manipulation will have to be done through f3
 //Start a session
 session_start();
-
-//Require autoload file
-require_once('vendor/autoload.php');
 
 //Instantiate the F3 Base class
 $f3 = Base::instance();

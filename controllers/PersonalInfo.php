@@ -4,10 +4,22 @@ use JobApplication\DataLayer;
 use JobApplication\Applicant;
 use JobApplication\Applicant_SubscribedToLists;
 
+/**
+ *  controller for GET and POST to the personalInfo route
+ *
+ * @param  $f3 $f3 = Base::instance()
+ * @author Adam Winter
+ */
 class PersonalInfo
 {
-    static function display($f3){
-        require('constants/states.php');
+    /**
+     * Controller method for the personalInfo route GET
+     *
+     * @return void
+     */
+    static function display($f3)
+    {
+        include 'constants/states.php';
         //echo json_encode($states);
         $f3->set('states', DataLayer::getStates());
         //Instantiate a view
@@ -16,7 +28,16 @@ class PersonalInfo
         return true;
     }
 
-    static function respond(){
+    /**
+     * Controller method for the personalInfo route POST
+     *
+     * Requires $_POST['JSONpayload'], json-encoded associative array of the
+     * form values being posted
+     *
+     * @return void
+     */
+    static function respond()
+    {
         $obj = new stdClass();
         $obj->error = false;
 
@@ -37,7 +58,8 @@ class PersonalInfo
         $applicant->setPhone($personalInfoObj->phone);
         $applicant->setState($personalInfoObj->state);
 
-        $_SESSION["applicant"] = serialize($applicant);
+        $_SESSION["applicant"] = $applicant;
+        //$_SESSION["applicant"] = serialize($applicant);
 
         $_SESSION["fname"] = $personalInfoObj->fname;
         $_SESSION["lname"] = $personalInfoObj->lname;

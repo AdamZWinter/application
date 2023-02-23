@@ -1,0 +1,8 @@
+<?xml version="1.0"?>
+<ruleset name="PHP_CodeSniffer">
+    <description>The coding standard for the application project</description>
+    <rule ref="PEAR"/>
+    <file>controllers/</file>
+    <file>models/</file>
+    <exclude-pattern>*/migrations/*</exclude-pattern>
+</ruleset>
