@@ -1,6 +1,8 @@
 <?php
 use JobApplication\MailingListsObj;
 use JobApplication\DataLayer;
+use JobApplication\Applicant;
+use JobApplication\Applicant_SubscribedToLists;
 
 class MailingLists
 {
@@ -21,8 +23,11 @@ class MailingLists
         $mailingListsObject->validSelectionsJobs();
         $mailingListsObject->validSelectionsVerticals();
 
-        //Move data to SESSION array after validation
-        $_SESSION['mailingLists'] = $mailingListsObject->getJSONencoded();
+        $mailingObj = $mailingListsObject->getDecodedObject();
+        $applicant = unserialize($_SESSION["applicant"]);
+        $applicant->setSelectionsJob($mailingObj->jobsArray);
+        $applicant->setSelectionsVerticals($mailingObj->verticalsArray);
+        $_SESSION["applicant"] = serialize($applicant);
 
         //respond to the client
         echo json_encode($mailingListsObject->getObj());

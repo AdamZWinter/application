@@ -1,6 +1,8 @@
 <?php
 use JobApplication\PersonalInfoObj;
 use JobApplication\DataLayer;
+use JobApplication\Applicant;
+use JobApplication\Applicant_SubscribedToLists;
 
 class PersonalInfo
 {
@@ -26,12 +28,17 @@ class PersonalInfo
         $personalInfoObject->validMailing();
         $personalInfoObject->notBatman();
 
-
-        //Move data from POST array to SESSION array after validation
-        $_SESSION['personalInfo'] = $personalInfoObject->getJSONencoded();
-
         $personalInfoObj = $personalInfoObject->getDecodedObject();
-        //$personalInfoObj = json_decode($_SESSION['personalInfo']);
+
+        $applicant = $personalInfoObj->mailing ? new Applicant_SubscribedToLists() : new Applicant();
+        $applicant->setFname($personalInfoObj->fname);
+        $applicant->setLname($personalInfoObj->lname);
+        $applicant->setEmail($personalInfoObj->email);
+        $applicant->setPhone($personalInfoObj->phone);
+        $applicant->setState($personalInfoObj->state);
+
+        $_SESSION["applicant"] = serialize($applicant);
+
         $_SESSION["fname"] = $personalInfoObj->fname;
         $_SESSION["lname"] = $personalInfoObj->lname;
         $_SESSION["email"] = $personalInfoObj->email;

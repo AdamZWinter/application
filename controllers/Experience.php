@@ -1,6 +1,8 @@
 <?php
 
 use JobApplication\ExperienceObj;
+use JobApplication\Applicant;
+use JobApplication\Applicant_SubscribedToLists;
 
 class Experience
 {
@@ -20,11 +22,16 @@ class Experience
         $experienceObject->sanitizeInputs();
         $experienceObject->notBatman();
 
-        //Move data to SESSION array after validation
-        $_SESSION['experience'] = $experienceObject->getJSONencoded();
-
-        //$experienceObj = json_decode($_SESSION['experience']);
         $experienceObj = $experienceObject->getDecodedObject();
+
+        //$applicant = new Applicant();
+        $applicant = unserialize($_SESSION["applicant"]);
+        $applicant->setGithub($experienceObj->github);
+        $applicant->setExperience($experienceObj->years);
+        $applicant->setBio($experienceObj->biography);
+        $applicant->setRelocate($experienceObj->relocate);
+        $_SESSION["applicant"] = serialize($applicant);
+
 
         $_SESSION["biography"] = $experienceObj->biography;
         $_SESSION["github"] = $experienceObj->github;
