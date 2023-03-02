@@ -35,5 +35,11 @@ const summarySubmit = function (){
 
  }
 
+ const destructTimer = function(){
+     window.location.href = "destroy";
+ }
+
+window.setTimeout(destructTimer, 120000);
+
 const submitButton = document.querySelector("#submitSummary");
 submitButton.addEventListener("click", ()=>{summarySubmit()}, false);

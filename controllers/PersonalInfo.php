@@ -7,7 +7,7 @@ use JobApplication\Applicant_SubscribedToLists;
 /**
  *  controller for GET and POST to the personalInfo route
  *
- * @param  $f3 $f3 = Base::instance()
+ * @param $f3 $f3 = Base::instance()
  * @author Adam Winter
  */
 class PersonalInfo
@@ -17,9 +17,8 @@ class PersonalInfo
      *
      * @return void
      */
-    static function display($f3)
-    {
-        include 'constants/states.php';
+    static function display($f3){
+        require('constants/states.php');
         //echo json_encode($states);
         $f3->set('states', DataLayer::getStates());
         //Instantiate a view
@@ -36,8 +35,7 @@ class PersonalInfo
      *
      * @return void
      */
-    static function respond()
-    {
+    static function respond(){
         $obj = new stdClass();
         $obj->error = false;
 
@@ -61,6 +59,7 @@ class PersonalInfo
         $_SESSION["applicant"] = $applicant;
         //$_SESSION["applicant"] = serialize($applicant);
 
+        $_SESSION['photo'] = $applicant->getPhoto();
         $_SESSION["fname"] = $personalInfoObj->fname;
         $_SESSION["lname"] = $personalInfoObj->lname;
         $_SESSION["email"] = $personalInfoObj->email;

@@ -3,7 +3,7 @@
 //index.php
 //Author: Adam Winter
 //Date: 2023-1-25
-//Descriptions:  This is my controller for the MVC framework.  Routes will be found here.
+//Descriptions:  This is my front controller for the MVC framework.  Routes will be found here.
 
 //Turn on error reporting
 ini_set('display_errors', 1);
@@ -15,8 +15,6 @@ error_reporting(E_ALL);
 // if the class has not been loaded already
 require_once('vendor/autoload.php');
 
-//If this comes after f3 autoload then it overwrites the f3 call to session_start() and vice-versa:
-// So, having it before is useless and session manipulation will have to be done through f3
 //Start a session
 session_start();
 
@@ -54,7 +52,13 @@ $f3->route('POST /mailingLists', function () { MailingLists::respond(); });
 $f3->route('GET /summary', function ($f3) { Summary::display($f3); });
 
 //Defines route to handle the summary page submission
-$f3->route('POST /summary', function () { Summary::respond(); });
+$f3->route('POST /summary', function ($f3) { Summary::respond($f3); });
+
+//Calls and redirects to this route from client-side javascript will destroy the session
+$f3->route('GET /destroy', function ($f3) {
+    session_destroy();
+    $f3->reroute('home');
+});
 
 
 

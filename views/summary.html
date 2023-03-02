@@ -42,11 +42,29 @@
                         <p>Experience: {{ @SESSION.years }}<check if="{{ @SESSION.years=='4' }}"><true>+</true></check> years</p>
                         <p>Willing to Relocate: {{ @SESSION.relocate }}</p>
                         <p>Mailing Lists: {{ @SESSION.mailingListsString }}</p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                        <p>
+                        <form action="summary" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+                            <p>
+                            <label for="the_file">Add Your Photo (30 MB max): </label>
+                            </p>
+                            <input type="file" name="the_file" id="the_file" />
+                            <br>
+                            <br>
+<!--                            <label for="destination">Destination (ends with /):</label><input type="text" name="destination" id="destination" style="width:350px;" value="/var/www/html/utilities/uploads/" />-->
+                            <input type="submit" value="Upload File" />
+                        </form>
+                        </p>
+
 
                     </div>
 
                     <div class="col-md-6 col-sm-12">
-                        <img class="img-fluid" src="images/somebody.jpg" alt="Cartoon silhouette representing a person head and shoulders.">
+                        <img class="img-fluid" src="images/userUploads/{{ @SESSION.photo }}" alt="Cartoon silhouette representing a person head and shoulders.">
                         <br>
                         <br>
                         <label>Biography:</label><br>
@@ -61,7 +79,7 @@
                         </div>
                         <br>
                         <span id="submitFeedback"></span>
-                        <p>{{ var_dump(@SESSION.applicant) }}</p>
+<!--                        <p>{{ var_dump(@SESSION.applicant) }}</p>-->
                         <br>
                         <br>
 

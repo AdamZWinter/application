@@ -18,6 +18,7 @@ class Applicant
     private $_experience = null;
     private $_relocate = null;
     private $_bio = null;
+    private $_photo;
 
     /**
      * @param $_fname  String first name, defaults to null
@@ -33,6 +34,7 @@ class Applicant
         $this->_email = $email;
         $this->_phone = $phone;
         $this->_state = $state;
+        $this->_photo = 'somebody.jpg';
     }
 
     /**
@@ -178,6 +180,24 @@ class Applicant
     {
         $this->_bio = $bio;
     }
+
+    /**
+     * @return null
+     */
+    public function getPhoto()
+    {
+        return $this->_photo;
+    }
+
+    /**
+     * @param null $photo
+     */
+    public function setPhoto($photo)
+    {
+        $this->_photo = $photo;
+    }
+
+
 
 //    /** For all functions that call this method
 //     * or anything that calls the serialize method
