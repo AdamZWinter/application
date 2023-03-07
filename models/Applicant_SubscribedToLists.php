@@ -44,6 +44,23 @@ class Applicant_SubscribedToLists extends Applicant
         $this->_selectionsVerticals = $selectionsVerticals;
     }
 
+    public function getListsString(){
+        $mailingLists = "";
+        $jobsArray = $this->getSelectionsJob();
+        $verticalsArray = $this->getSelectionsVerticals();
+        $mailingListsArray = array_merge($jobsArray, $verticalsArray);
+
+        if(!empty($mailingListsArray)){
+            foreach ($mailingListsArray as $category){
+                $mailingLists = $mailingLists.", ".$category;
+            }
+            $mailingLists = ltrim($mailingLists, ', ');
+        }else{
+            $mailingLists = "none";
+        }
+        return $mailingLists;
+    }
+
 //    public function __serialize()
 //    {
 //        $assoc = [];

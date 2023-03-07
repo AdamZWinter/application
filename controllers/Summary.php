@@ -1,6 +1,7 @@
 <?php
 use JobApplication\Applicant;
 use JobApplication\Applicant_SubscribedToLists;
+use JobApplication\DataLayer;
 
 /**
  *  controller for GET and POST to the summary route
@@ -16,30 +17,23 @@ class Summary
      * @return void
      */
     static function display($f3){
+        $errors = [];
+        if(empty($_SESSION["applicant"])){
+            $errors[] = 'This page has timed out.';
+            $errors[] = 'The information for this page is no longer available.';
+            $_SESSION['errors'] = $errors;
+            $f3->reroute('error');
+        }
+        $applicant = $_SESSION["applicant"];
 
         //Write to Database here so that any error can be displayed
 
-        $applicant = $_SESSION["applicant"];
-        $mailingLists = "";
+
         if(is_a($applicant, 'JobApplication\Applicant_SubscribedToLists')){
-
-            $jobsArray = $applicant->getSelectionsJob();
-            $verticalsArray = $applicant->getSelectionsVerticals();
-            $mailingListsArray = array_merge($jobsArray, $verticalsArray);
-
-            if(!empty($mailingListsArray)){
-                foreach ($mailingListsArray as $category){
-                    $mailingLists = $mailingLists.", ".$category;
-                }
-                $mailingLists = ltrim($mailingLists, ', ');
-            }else{
-                $mailingLists = "none";
-            }
+            $_SESSION["mailingListsString"] = $applicant->getListsString();
         }else{
-            $mailingLists = "none";
+            $_SESSION["mailingListsString"] = "none";
         }
-
-        $_SESSION["mailingListsString"] = $mailingLists;
 
         $f3->sync('SESSION');
         //Instantiate a view

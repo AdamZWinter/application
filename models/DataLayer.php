@@ -5,20 +5,57 @@ namespace JobApplication;
 class DataLayer
 {
 
-    private $dbh;
+    private $_dbh;
     function __construct(){
         require($_SERVER['HOME'].'/conf.php');
         try {
-            $this->dbh = new \PDO(DB_DRIVER, DB_USER, PASSWORD);
+            $this->_dbh = new \PDO(DB_DRIVER, DB_USER, PASSWORD);
             echo 'DB connection successful.';
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
     }
 
-    function saveOrder($orderObj)
+    function insertApplicant($applicant)
     {
-        $sql = "INSERT INTO `orders`(`food`, `meal`, `condiments`) VALUES (:food, :meal, :condiments)";
+        //$applicant = new Applicant();
+        $sql = "INSERT INTO `applicants`(`id`, `fname`, `lname`, `email`, `phone`, `state`, `github`, 
+                                        `experience`, `relocate`, `bio`, `photo`, `mailing_lists_signup`, `mailing_lists_subscriptions`) 
+                    VALUES (null, :fname, :lname, :email, :phone, :state, :github, :experience, :relocate, :bio, :photo, :subscribed, :lists)";
+        $stmt = $this->_dbh->prepare($sql);
+
+        $lname = $applicant->getFname();
+        $fname = $applicant->getLname();
+        $email = $applicant->getEmail();
+        $phone = $applicant->getPhone();
+        $state = $applicant->getState();
+        $github = $applicant->getGithub();
+        $experience = $applicant->getExperience();
+        $relocate = $applicant->getRelocate();
+        $bio = $applicant->getBio();
+        $photo = $applicant->getPhoto();
+        $subscribed = is_a($applicant, Applicant_SubscribedToLists::class) ? 1 : 0;
+        $lists = $subscribed ? $applicant->getListsString() : "none";
+
+        $stmt->bindParam(':fname', $fname);
+        $stmt->bindParam(':lname', $lname);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':phone', $phone);
+        $stmt->bindParam(':state', $state);
+        $stmt->bindParam(':github', $github);
+        $stmt->bindParam(':experience', $experience);
+        $stmt->bindParam(':relocate', $relocate);
+        $stmt->bindParam(':bio', $bio);
+        $stmt->bindParam(':photo', $photo);
+        $stmt->bindParam(':subscribed', $subscribed);
+        $stmt->bindParam(':lists', $lists);
+
+        $stmt->execute();
+        if($stmt->rowCount() == 1){
+            return $this->_dbh->lastInsertId();
+        }else{
+            return -1;
+        }
 
     }
 
