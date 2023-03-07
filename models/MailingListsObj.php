@@ -13,7 +13,6 @@ class MailingListsObj extends PostedObj
 
     public function validSelectionsJobs()
     {
-        include 'constants/mailingLists.php';
         foreach($this->jobsArray as $job){
             if(!in_array($job, DataLayer::getJobsList())) {
                 $this->obj->error = true;
@@ -26,7 +25,6 @@ class MailingListsObj extends PostedObj
 
     public function validSelectionsVerticals()
     {
-        include 'constants/mailingLists.php';
         foreach($this->verticalsArray as $vertical){
             if(!in_array($vertical, DataLayer::getVerticalsList())) {
                 $this->obj->error = true;

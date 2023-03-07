@@ -19,7 +19,7 @@ class MailingLists
      */
     static function display($f3)
     {
-        include 'constants/mailingLists.php';
+        //include 'constants/mailingLists.php';
         $f3->set('jobs', DataLayer::getJobsList());
         $f3->set('verticals', DataLayer::getVerticalsList());
         //Instantiate a view

@@ -18,8 +18,6 @@ class PersonalInfo
      * @return void
      */
     static function display($f3){
-        require('constants/states.php');
-        //echo json_encode($states);
         $f3->set('states', DataLayer::getStates());
         //Instantiate a view
         $view = new Template();
