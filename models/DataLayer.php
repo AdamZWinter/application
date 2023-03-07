@@ -5,6 +5,23 @@ namespace JobApplication;
 class DataLayer
 {
 
+    private $dbh;
+    function __construct(){
+        require($_SERVER['HOME'].'/conf.php');
+        try {
+            $this->dbh = new \PDO(DB_DRIVER, DB_USER, PASSWORD);
+            echo 'DB connection successful.';
+        } catch (\PDOException $e) {
+            echo $e->getMessage();
+        }
+    }
+
+    function saveOrder($orderObj)
+    {
+        $sql = "INSERT INTO `orders`(`food`, `meal`, `condiments`) VALUES (:food, :meal, :condiments)";
+
+    }
+
     static function getJobsList()
     {
         return array("JavaScript", "PHP", "Java", "Python", "HTML", "CSS", "ReactJS", "NodeJS");
