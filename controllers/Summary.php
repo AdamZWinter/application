@@ -79,5 +79,12 @@ class Summary
 
     }
 
+    static function submitApplication(){
+        $obj = new stdClass();
+        $obj->error = false;
+        $obj->message = "There is no error here.";
+        echo json_encode($obj);
+    }
+
 
 }

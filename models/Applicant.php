@@ -19,6 +19,7 @@ class Applicant
     private $_relocate = null;
     private $_bio = null;
     private $_photo;
+    private $_id;
 
     /**
      * @param $_fname  String first name, defaults to null
@@ -196,6 +197,24 @@ class Applicant
     {
         $this->_photo = $photo;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getId()
+    {
+        return $this->_id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->_id = $id;
+    }
+
+
 
 
 

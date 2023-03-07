@@ -60,6 +60,8 @@ $f3->route('GET /admin', function ($f3) { Admin::get($f3); });
 //Defines route to get a json-encoded reponse with list of applicants
 $f3->route('GET /admin/applicants', function () { Admin::getApplicants(); });
 
+//Defines route to get a json-encoded reponse with list of applicants
+$f3->route('POST /summary/submit', function () { Summary::submitApplication(); });
 
 
 
