@@ -1,7 +1,6 @@
 
 const summarySubmit = function (){
 
-    //TODO:  do validation first
     return document.querySelector("#submitFeedback").innerHTML = "This button doesn't do anything, yet.";
 
 //     var fail = true;
@@ -39,7 +38,7 @@ const summarySubmit = function (){
      window.location.href = "destroy";
  }
 
-window.setTimeout(destructTimer, 120000);
+window.setTimeout(destructTimer, 1200000);
 
 const submitButton = document.querySelector("#submitSummary");
 submitButton.addEventListener("click", ()=>{summarySubmit()}, false);

@@ -24,23 +24,12 @@ class Summary
             $_SESSION['errors'] = $errors;
             $f3->reroute('error');
         }
-        $applicant = $_SESSION["applicant"];
-
-        //Write to Database here so that any error can be displayed
-
-
-        if(is_a($applicant, 'JobApplication\Applicant_SubscribedToLists')){
-            $_SESSION["mailingListsString"] = $applicant->getListsString();
-        }else{
-            $_SESSION["mailingListsString"] = "none";
-        }
 
         $f3->sync('SESSION');
         //Instantiate a view
         $view = new Template();
         echo $view->render("views/summary.html");
 
-        //session_destroy();
     }
 
     /**
