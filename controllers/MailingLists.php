@@ -49,7 +49,7 @@ class MailingLists
         $applicant->setSelectionsJob($mailingObj->jobsArray);
         $applicant->setSelectionsVerticals($mailingObj->verticalsArray);
 
-        if(is_a($applicant, 'JobApplication\Applicant_SubscribedToLists')){
+        if(is_a($applicant, 'JobApplication\Applicant_SubscribedToLists')) {
             $_SESSION["mailingListsString"] = $applicant->getListsString();
         }else{
             $_SESSION["mailingListsString"] = "none";

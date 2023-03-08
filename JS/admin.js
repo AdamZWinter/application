@@ -7,6 +7,7 @@ function drawTable(someData) {
 
     var data = new google.visualization.DataTable();
 
+    data.addColumn('string', 'ID');
     data.addColumn('string', 'First');
     data.addColumn('string', 'Last');
     data.addColumn('string', 'Email');
@@ -17,8 +18,8 @@ function drawTable(someData) {
     data.addColumn('string', 'Relocate');
     data.addColumn('string', 'Biography');
     data.addColumn('string', 'Photo')
-    data.addColumn('string', 'Subscribed');
-    data.addColumn('string', 'Subsciptions');
+    //data.addColumn('string', 'Subscribed');
+    data.addColumn('string', 'Mailing Lists');
 
     data.addRows(someData);
 
@@ -35,7 +36,7 @@ function drawTable(someData) {
 
     var table = new google.visualization.Table(document.getElementById('table_div'));
 
-    table.draw(data, {showRowNumber: true, width: '100%', height: '100%', page: 'enable', pageSize: 5, allowHtml: true});
+    table.draw(data, {showRowNumber: true, width: '100%', height: '100%', page: 'enable', pageSize: 20, allowHtml: true, showRowNumber: false});
 }
 
 function getReportsData(){
@@ -50,7 +51,7 @@ function getReportsData(){
             }else{
                 //document.querySelector("#submitFeedback").innerHTML = "This is actually executing.";
                 drawTable(responseObj.data);
-                //document.querySelector("#submitFeedback").innerHTML = "";
+                document.querySelector("#submitFeedback").innerHTML = "";
             }
         }else{
             document.querySelector("#submitFeedback").innerHTML = "Ready State: "+this.readyState+"  Status: "+this.status+ "  Response: "+this.responseText;

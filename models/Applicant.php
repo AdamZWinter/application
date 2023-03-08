@@ -9,6 +9,7 @@ namespace JobApplication;
  */
 class Applicant
 {
+    private $_id;
     private $_fname;
     private $_lname;
     private $_email;
@@ -19,14 +20,13 @@ class Applicant
     private $_relocate = null;
     private $_bio = null;
     private $_photo;
-    private $_id;
 
     /**
-     * @param $_fname  String first name, defaults to null
-     * @param $_lname  String last name, defaults to null
-     * @param $_email  String email, defaults to null
-     * @param $_phone  String phone, defaults to null
-     * @param $_state  String state, defaults to null
+     * @param $_fname String first name, defaults to null
+     * @param $_lname String last name, defaults to null
+     * @param $_email String email, defaults to null
+     * @param $_phone String phone, defaults to null
+     * @param $_state String state, defaults to null
      */
     public function __construct($fname = null, $lname = null, $email = null, $phone = null, $state = null)
     {
@@ -214,48 +214,80 @@ class Applicant
         $this->_id = $id;
     }
 
+    public function toArray()
+    {
+        $applicantArray = [];
+        $applicantArray[] = $this->getId();
+        $applicantArray[] = $this->getFname();
+        $applicantArray[] = $this->getLname();
+        $applicantArray[] = $this->getEmail();
+        $applicantArray[] = (string)$this->getPhone();
+        $applicantArray[] = $this->getState();
+        $applicantArray[] = $this->getGithub();
+        $applicantArray[] = $this->getExperience();
+        $applicantArray[] = $this->getRelocate();
+        $applicantArray[] = $this->getBio();
+        $applicantArray[] = $this->getPhoto();
+        return $applicantArray;
+    }
+
+    public function constructFromDatabase($assoc)
+    {
+        $this->_id = $assoc['id'];
+        $this->_fname = $assoc['fname'];
+        $this->_lname = $assoc['lname'];
+        $this->_email = $assoc['email'];
+        $this->_phone = $assoc['phone'];
+        $this->_state = $assoc['state'];
+        $this->_github = $assoc['github'];
+        $this->_experience = $assoc['experience'];
+        $this->_relocate = $assoc['relocate'];
+        $this->_bio = $assoc['bio'];
+        $this->_photo = $assoc['photo'];
+    }
 
 
 
 
-//    /** For all functions that call this method
-//     * or anything that calls the serialize method
-//     *
-//     * @return array
-//     */
-//    public function __serialize()
-//    {
-//        $assoc = [];
-//        $assoc['fname'] = $this->_fname;
-//        $assoc['lname'] = $this->_lname;
-//        $assoc['email'] = $this->_email;
-//        $assoc['phone'] = $this->_phone;
-//        $assoc['state'] = $this->_state;
-//        $assoc['experience'] = $this->_experience;
-//        $assoc['bio'] = $this->_bio;
-//        $assoc['github'] = $this->_github;
-//        $assoc['relocate'] = $this->_relocate;
-//        return $assoc;
-//    }
-//
-//    /**
-//     * @param $data  Output from serialize() function
-//     * or anything that calls the unserialize method
-//     *
-//     * @return void
-//     */
-//    public function __unserialize($data)
-//    {
-//        $this->_fname = $data['fname'];
-//        $this->_lname = $data['lname'];
-//        $this->_email = $data['email'];
-//        $this->_phone = $data['phone'];
-//        $this->_state = $data['state'];
-//        $this->_experience = $data['experience'];
-//        $this->_bio = $data['bio'];
-//        $this->_github = $data['github'];
-//        $this->_relocate = $data['relocate'];
-//    }
+
+    //    /** For all functions that call this method
+    //     * or anything that calls the serialize method
+    //     *
+    //     * @return array
+    //     */
+    //    public function __serialize()
+    //    {
+    //        $assoc = [];
+    //        $assoc['fname'] = $this->_fname;
+    //        $assoc['lname'] = $this->_lname;
+    //        $assoc['email'] = $this->_email;
+    //        $assoc['phone'] = $this->_phone;
+    //        $assoc['state'] = $this->_state;
+    //        $assoc['experience'] = $this->_experience;
+    //        $assoc['bio'] = $this->_bio;
+    //        $assoc['github'] = $this->_github;
+    //        $assoc['relocate'] = $this->_relocate;
+    //        return $assoc;
+    //    }
+    //
+    //    /**
+    //     * @param $data  Output from serialize() function
+    //     * or anything that calls the unserialize method
+    //     *
+    //     * @return void
+    //     */
+    //    public function __unserialize($data)
+    //    {
+    //        $this->_fname = $data['fname'];
+    //        $this->_lname = $data['lname'];
+    //        $this->_email = $data['email'];
+    //        $this->_phone = $data['phone'];
+    //        $this->_state = $data['state'];
+    //        $this->_experience = $data['experience'];
+    //        $this->_bio = $data['bio'];
+    //        $this->_github = $data['github'];
+    //        $this->_relocate = $data['relocate'];
+    //    }
 
 
 }

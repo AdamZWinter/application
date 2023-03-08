@@ -54,14 +54,21 @@ $f3->route('GET /summary', function ($f3) { Summary::display($f3); });
 //Defines route to handle the summary page submission
 $f3->route('POST /summary', function ($f3) { Summary::respond($f3); });
 
+//Defines route to get a json-encoded reponse with list of applicants
+$f3->route('POST /summary/submit', function () { Summary::submitApplication(); });
+
+
+
 //Defines route to display the admin page
 $f3->route('GET /admin', function ($f3) { Admin::get($f3); });
 
 //Defines route to get a json-encoded reponse with list of applicants
-$f3->route('GET /admin/applicants', function () { Admin::getApplicants(); });
+$f3->route('GET /admin/applicants', function () { Admin::getApplicantsAsArrayData(); });
 
 //Defines route to get a json-encoded reponse with list of applicants
-$f3->route('POST /summary/submit', function () { Summary::submitApplication(); });
+$f3->route('GET /applicant/@id', function () use ($f3) { Admin::applicant($f3); });
+
+
 
 
 

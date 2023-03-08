@@ -7,7 +7,7 @@ use JobApplication\Applicant_SubscribedToLists;
 /**
  *  controller for GET and POST to the personalInfo route
  *
- * @param $f3 $f3 = Base::instance()
+ * @param  $f3 $f3 = Base::instance()
  * @author Adam Winter
  */
 class PersonalInfo
@@ -17,7 +17,8 @@ class PersonalInfo
      *
      * @return void
      */
-    static function display($f3){
+    static function display($f3)
+    {
         $f3->set('states', DataLayer::getStates());
         //Instantiate a view
         $view = new Template();
@@ -33,7 +34,8 @@ class PersonalInfo
      *
      * @return void
      */
-    static function respond(){
+    static function respond()
+    {
         $obj = new stdClass();
         $obj->error = false;
 

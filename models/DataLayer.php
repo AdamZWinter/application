@@ -6,11 +6,12 @@ class DataLayer
 {
 
     private $_dbh;
-    function __construct(){
-        require($_SERVER['HOME'].'/conf.php');
+    function __construct()
+    {
+        include $_SERVER['HOME'].'/conf.php';
         try {
             $this->_dbh = new \PDO(DB_DRIVER, DB_USER, PASSWORD);
-            echo 'DB connection successful.';
+            //echo 'DB connection successful.';
         } catch (\PDOException $e) {
             echo $e->getMessage();
         }
@@ -31,7 +32,7 @@ class DataLayer
         $state = $applicant->getState();
         $github = $applicant->getGithub();
         $experience = $applicant->getExperience();
-        $relocate = $applicant->getRelocate();
+        $relocate = $applicant->getRelocate() == 'yes' ? 1 : 0;
         $bio = $applicant->getBio();
         $photo = $applicant->getPhoto();
         $subscribed = is_a($applicant, Applicant_SubscribedToLists::class) ? 1 : 0;
@@ -51,12 +52,43 @@ class DataLayer
         $stmt->bindParam(':lists', $lists);
 
         $stmt->execute();
-        if($stmt->rowCount() == 1){
+        if($stmt->rowCount() == 1) {
             return $this->_dbh->lastInsertId();
         }else{
+            var_dump($stmt->errorInfo());
             return -1;
         }
 
+    }
+
+    function getAllApplicantIDs()
+    {
+        $sql = "SELECT id FROM applicants";
+        $stmt = $this->_dbh->prepare($sql);
+        $stmt->execute();
+        $results = $stmt->fetchAll();
+        //var_dump($results);
+        $arrayResults = [];
+        foreach ($results as $row){
+            $arrayResults[] = $row[0];
+        }
+        return $arrayResults;
+    }
+
+    function getApplicantByID($id)
+    {
+        $sql = "SELECT * FROM applicants WHERE `id` = :id";
+        $stmt = $this->_dbh->prepare($sql);
+        $stmt->bindParam(':id', $id);
+        $stmt->execute();
+        $result = $stmt->fetch(\PDO::FETCH_ASSOC);
+        if($result['mailing_lists_signup'] == 1) {
+            $applicant = new Applicant_SubscribedToLists();
+        }else{
+            $applicant = new Applicant();
+        }
+        $applicant->constructFromDatabase($result);
+        return $applicant;
     }
 
     static function getJobsList()

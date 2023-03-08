@@ -13,12 +13,13 @@ class Summary
     /**
      * Controller method for the summary route GET
      *
-     * @param $f3 $f3 = Base::instance()
+     * @param  $f3 $f3 = Base::instance()
      * @return void
      */
-    static function display($f3){
+    static function display($f3)
+    {
         $errors = [];
-        if(empty($_SESSION["applicant"])){
+        if(empty($_SESSION["applicant"])) {
             $errors[] = 'This page has timed out.';
             $errors[] = 'The information for this page is no longer available.';
             $_SESSION['errors'] = $errors;
@@ -39,7 +40,8 @@ class Summary
      *
      * @return void
      */
-    static function respond($f3){
+    static function respond($f3)
+    {
 
         $obj = new stdClass();
         $obj->error = false;
@@ -48,8 +50,7 @@ class Summary
         $uploaded_file = $destination.$_FILES['the_file']['name'];
 
 
-        if (is_uploaded_file($_FILES['the_file']['tmp_name']))
-        {
+        if (is_uploaded_file($_FILES['the_file']['tmp_name'])) {
             $mime_type = mime_content_type($_FILES['the_file']['tmp_name']);
             // allow certain files
             //https://www.php.net/manual/en/function.image-type-to-mime-type.php
@@ -59,8 +60,7 @@ class Summary
                 exit;
             }
 
-            if (!move_uploaded_file($_FILES['the_file']['tmp_name'], $uploaded_file))
-            {
+            if (!move_uploaded_file($_FILES['the_file']['tmp_name'], $uploaded_file)) {
                 echo 'Problem:  Could not move temp file to destination.  ';
                 exit;
             }
@@ -79,11 +79,25 @@ class Summary
 
     }
 
-    static function submitApplication(){
+    static function submitApplication()
+    {
         $obj = new stdClass();
         $obj->error = false;
-        $obj->message = "There is no error here.";
-        echo json_encode($obj);
+        $obj->message = "";
+
+        $applicant = $_SESSION["applicant"];
+        $dataLayer = new DataLayer();
+        $id = $dataLayer->insertApplicant($applicant);
+
+        if($id > 0) {
+            $obj->message = "Thank you, your application has been submitted.  ID: ".$id;
+            echo json_encode($obj);
+        }else{
+            $obj->error = true;
+            $obj->message = "Failed to insert applicant to database.";
+            echo json_encode($obj);
+        }
+
     }
 
 
