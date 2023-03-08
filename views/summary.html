@@ -47,17 +47,19 @@
                         <br>
                         <br>
                         <p>
-                        <form action="summary" method="post" enctype="multipart/form-data">
-                            <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
-                            <p>
-                            <label for="the_file">Add Your Photo (30 MB max): </label>
-                            </p>
-                            <input type="file" name="the_file" id="the_file" />
-                            <br>
-                            <br>
-<!--                            <label for="destination">Destination (ends with /):</label><input type="text" name="destination" id="destination" style="width:350px;" value="/var/www/html/utilities/uploads/" />-->
-                            <input type="submit" value="Upload File" />
-                        </form>
+                        <div id="photoForm">
+                            <form action="summary" method="post" enctype="multipart/form-data">
+                                <input type="hidden" name="MAX_FILE_SIZE" value="500000" />
+                                <p>
+                                <label for="the_file">Add Your Photo (30 MB max): </label>
+                                </p>
+                                <input type="file" name="the_file" id="the_file" />
+                                <br>
+                                <br>
+    <!--                            <label for="destination">Destination (ends with /):</label><input type="text" name="destination" id="destination" style="width:350px;" value="/var/www/html/utilities/uploads/" />-->
+                                <input type="submit" value="Upload File" id="uploadButton"/>
+                            </form>
+                        </div>
                         </p>
 
 
