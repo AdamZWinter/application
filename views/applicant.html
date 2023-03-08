@@ -1,0 +1,94 @@
+<!--summary.html-->
+<!--Author: Adam Winter-->
+<!--Date: 2023-3-7-->
+<!--Descriptions:  Displays individual applicant by id  -->
+
+<include href="views/header.html"></include>  <!--This is strictly F3 syntax-->
+
+<div class="container-fluid">
+    <div class="row">
+
+        <div class="d-none d-sm-none d-md-block col-1">
+            <!--            <p>Left Margin</p>-->
+        </div>
+
+        <div class="col-md-10 col-sm-12">
+            <div class="container">
+
+                <!--    -----------------------------------            MAIN     ---------------------------------------------------  -->
+
+                <div class="row">
+
+                    <div class="col-md-12 col-sm-12">
+                        <br>
+                        <br>
+                        <br>
+                        <h1 class="text-start">Applicant: {{ @SESSION.applicant->getID() }}</h1>
+                        <hr>
+                    </div>
+
+                </div><!-- end row -->
+
+
+                <div class="row">
+
+                    <div class="col-md-6 col-sm-12">
+                        <p>{{ @SESSION.applicant->getLname() }}, {{ @SESSION.applicant->getFname() }}</p>
+                        <p>Email: {{ @SESSION.applicant->getEmail() }}</p>
+                        <p>Phone: {{ @SESSION.applicant->getPhone() }}</p>
+                        <p>State: {{ @SESSION.applicant->getState() }}</p>
+                        <p>Github: {{ @SESSION.applicant->getGithub() }}</p>
+                        <p>Experience: {{ @SESSION.applicant->getExperience() }}<check if="{{ @SESSION.applicant->getExperience() == '4' }}"><true>+</true></check> years</p>
+                        <p>Willing to Relocate: <check if="{{ @SESSION.applicant->getRelocate() == '1' }}"><true>Yes</true><false>No</false></check></p>
+                        <p>Mailing Lists: {{ @SESSION.mailingListsString }}</p>
+                        <br>
+                        <br>
+                        <br>
+                        <br>
+                    </div>
+
+                    <div class="col-md-6 col-sm-12">
+                        <img class="img-fluid" src="{{@BASE}}/images/userUploads/{{ @SESSION.applicant->getPhoto() }}" alt="Photo that person submitted of themself, or default avatar picture">
+                        <br>
+                        <br>
+                        <label>Biography:</label><br>
+                        <div class="noteBox rounded">
+                            <p>{{ html_entity_decode(@SESSION.applicant->getBio()) }}</p>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+<!--                        <div class="d-grid gap-2">-->
+<!--                            <button type="button" class="rounded nextButton btn-outline-primary" id="submitSummary">Submit My Application</button>-->
+<!--                            <a href="home"><button type="button" class="rounded nextButton btn-outline-primary d-none" id="buttonDone">Done</button></a>-->
+<!--                        </div>-->
+                        <br>
+                        <span id="feedback"></span>
+                        <!--                        <p>{{ var_dump(@SESSION.applicant) }}</p>-->
+                        <br>
+                        <br>
+
+                    </div>
+
+                </div><!-- end row -->
+
+                <!--    -----------------------------------       END MAIN     ---------------------------------------------------  -->
+
+            </div><!-- end inner container-->
+        </div> <!-- between margins column-->
+
+        <div class="d-none d-sm-none d-md-block col-1">
+            <!--            <p>Right Margin</p>-->
+        </div>
+
+    </div><!-- end row -->
+</div><!-- end container -->
+
+<!--third-party scripts-->
+<script src="//code.jquery.com/jquery.js"></script>
+
+<!--My scripts-->
+<script src="{{@BASE}}/JS/summary.js"></script>
+
+
+<include href="views/footer.html"></include>  <!--This is strictly F3 syntax-->
